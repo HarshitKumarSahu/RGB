@@ -1,9 +1,55 @@
+@font-face {
+  font-family: ogg;
+  src: url(../public/Ogg-Regular.ttf);
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: ogg;
+  font-size: 3vw;
 }
 html, body {
   width: 100%;
   height: 100%;
+  background-color: #dadada;
+}
+.main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+ul {
+  color: #131313;
+  position: relative;
+  top: 20%;
+  left: 10%;
+  width: 80%;
+  height: 60%;
+  list-style: none;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-direction: column;
+  z-index: 1;
+  /* mix-blend-mode: luminosity; */
+  mix-blend-mode: color-burn;
+}
+li {
+  width: 100%;
+  position: relative;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.104);
+  cursor: pointer;
+  transition: 1s;
+}
+li:hover {
+  opacity: 1 !important;
+}
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
 }

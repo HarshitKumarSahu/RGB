@@ -20,7 +20,7 @@ const textureFour = new THREE.TextureLoader().load(images.imageFour);
 class WebGl {
   constructor() {
     this.container = document.querySelector(".main");
-    this.links = [...document.querySelectorAll("li")]
+    this.links = [...document.querySelectorAll("a")]
     this.scene = new THREE.Scene();
     this.perspective = 1000; // z-axis camera , need later for fov
     this.sizes = new THREE.Vector2(0,0); // mesh size
@@ -42,13 +42,13 @@ class WebGl {
           case 2 :
             this.uniform.uTexture.value = textureThree;
             break; 
-          case 3 :
-            this.uniform.uTexture.value = textureFour;
-            break;  
+          // case 3 :
+          //   this.uniform.uTexture.value = textureFour;
+          //   break;  
         }
       })
     })
-    this.addEventListeners(document.querySelector("ul"));
+    this.addEventListeners(document.querySelector(".heading"));
     this.setupCamera();
     this.onMouseMove();
     this.createMesh();
@@ -76,10 +76,10 @@ class WebGl {
 
   addEventListeners(element) {
     element.addEventListener("mouseenter", ()=>{
-      this.linksHover = "true"
+      this.linksHover = true
     })
     element.addEventListener("mouseleave", ()=>{
-      this.linksHover = "false"
+      this.linksHover = false
     })
   }
 
@@ -120,10 +120,10 @@ class WebGl {
       uniforms: this.uniform,
       vertexShader : vertex,
       fragmentShader : fragment,
-      transparent : true
+      transparent : true,
     })
     this.mesh = new THREE.Mesh(this.geometry, this.material);
-    this.sizes.set(250, 350);
+    this.sizes.set(200, 300);
     this.mesh.scale.set(this.sizes.x, this.sizes.y);
     this.mesh.position.set(this.offset.x, this.offset.y, 0);
     this.scene.add(this.mesh)
@@ -139,13 +139,13 @@ class WebGl {
     ? this.uniform.uAlpha.value = lerp(this.uniform.uAlpha.value, 1.0, 0.1)
     :  this.uniform.uAlpha.value = lerp(this.uniform.uAlpha.value, 0.0, 0.1)
 
-    for(let i = 0 ; i < this.links.length ; i++) {
-      if(this.linksHover) {
-        this.links[i].style.opacity = 0.2;
-      } else {
-        this.links[i].style.opacity = 0.2;
-      }
-    }
+    // for(let i = 0 ; i < this.links.length ; i++) {
+    //   if(this.linksHover) {
+    //     this.links[i].style.opacity = 0.2;
+    //   } else {
+    //     this.links[i].style.opacity = 0.2;
+    //   }
+    // }
 
     this.renderer.render(this.scene, this.camera)
     requestAnimationFrame(this.render.bind(this))

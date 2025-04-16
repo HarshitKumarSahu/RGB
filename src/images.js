@@ -7,7 +7,7 @@ const images = {
     imageOne,
     imageTwo,
     imageThree,
-    imageFour
+    imageFour,
 }
 
 export default images;
